@@ -14,7 +14,7 @@
     <div
       class="h-full transition-all duration-300"
       [style.width.%]="progreso()"
-      [ngClass]="{
+      [class]="{
         'bg-red-500': progreso() <= 20,
         'bg-yellow-500': progreso() > 20 && progreso() <= 69,
         'bg-green-500': progreso() > 69

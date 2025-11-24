@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { NgClass } from '@angular/common';
+
 @Component({
   selector: 'app-signal-box-component',
   
-  imports: [NgClass ],
+  imports: [],
   templateUrl: './SignalBoxComponent.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
