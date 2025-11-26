@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { Observable, catchError, delay, map, of, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { SimpsonsResponse } from '../interfaces/SimpsonsResponse';
 import { SimpsonsCharacterDetail } from '../interfaces/SimpsonsCharacterDetail';
+import { Options } from '../interfaces/Options';
 
 
 
@@ -27,6 +28,17 @@ export class SimpsonsService {
       catchError(err => {
         console.error('Personaje no encontrado', err);
         return of(null);
+      })
+    );
+  }
+
+  getCharactersOptions(options: Options): Observable<SimpsonsResponse> {
+    return this.http.get<SimpsonsResponse>(`${this.API_URL}/characters?page=${options.offset}`).pipe(
+      delay(3500),
+      map(res => res),
+      catchError(err => {
+        console.error('Error al obtener personajes', err);
+        return of({ count: 0, next: null, prev: null, pages: 0, results: [] });
       })
     );
   }
