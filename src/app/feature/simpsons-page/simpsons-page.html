@@ -11,16 +11,10 @@
     [totalPages]="totalPages()">
   </app-hero-simpsons>
 
+
   @if (simpsonsResource.isLoading()) {
     <div class="flex justify-center items-center h-64">
-      <span class="loading loading-spinner loading-lg text-primary"></span>
-    </div>
-  }
-
-  @if (simpsonsResource.error()) {
-    <div class="alert alert-error my-4">
-      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-      <span>Error cargando personajes. Revisa la consola (F12).</span>
+      <span class="loading loading-spinner loading-lg"></span>
     </div>
   }
 
@@ -42,24 +36,21 @@
   }
 
   @if (simpsonsResource.hasValue()) {
-    <div class="overflow-x-auto mb-12"> 
-      <table class="table table-zebra">
+    <div class="overflow-x-auto mb-12"> <table class="table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Ocupación</th>
             <th>Estado</th>
-            <th>Detalles</th> 
-            <th>Favorito</th> 
-          </tr>
+            <th>Detalles</th> <th>Favorito</th> </tr>
         </thead>
 
         <tbody>
           @for (personaje of simpsonsResource.value().results; track personaje.id) {
             <tr>
               <td>{{ personaje.id }}</td>
-              <td class="font-bold">{{ personaje.name }}</td>
+              <td>{{ personaje.name }}</td>
               <td>{{ personaje.occupation }}</td>
               <td>
                 <span class="badge badge-{{ personaje.status === 'Alive' ? 'success' : 'error' }}">
@@ -84,6 +75,7 @@
                   </button>
                 }
               </td>
+
             </tr>
           }
         </tbody>
@@ -91,9 +83,7 @@
     </div>
   }
 
-  <div class="divider"></div> 
-
-  <div class="mt-8">
+  <div class="divider"></div> <div class="mt-8">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-2xl font-bold">⭐ Mis Favoritos</h2>
       
@@ -124,12 +114,7 @@
         @for (favorite of favorites(); track favorite.id) {
           <div class="card bg-base-100 shadow-xl border border-base-200">
             <figure class="px-4 pt-4">
-              <img 
-                [src]="favorite.image" 
-                [alt]="favorite.nombre" 
-                class="rounded-xl h-48 w-full object-contain bg-base-200" 
-                onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'"
-              />
+              <img [src]="" [alt]="favorite.nombre" class="rounded-xl h-48 w-full object-contain bg-base-200" />
             </figure>
             
             <div class="card-body">
