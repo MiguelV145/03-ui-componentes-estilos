@@ -1,26 +1,53 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/authguard';
+import { publicGuard } from './core/guards/publicguard';
+import { adminGuard } from './core/guards/adminguard';
 
-import { DaisyPage } from './feature/daisy-page/daisy-page';
-import { SimpsonsPage } from './feature/simpsons-page/simpsons-page';
-import { SimpsonDetailPage } from './feature/simpson-detail-page/simpson-detail-page';
-import { EstilosPage } from './feature/estilos-page/estilos-page';
+
 
 export const routes: Routes = [
     {
-        path: '',
-        component: DaisyPage
-    },
-
-    {
-        path:'estilos',
-        component: EstilosPage
-    },
-    {
-        path: 'simpsons',
-        component: SimpsonsPage
-    },
-    {
-        path: 'simpsons/:id',
-        component: SimpsonDetailPage
-    }
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./feature/auth/pages/login-page/login-page').then(m => m.LoginPage),
+    canActivate: [publicGuard]
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./feature/auth/pages/register-page/register-page').then(m => m.RegisterPage),
+    canActivate: [publicGuard]
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./feature/daisy-page/daisy-page').then(m => m.DaisyPage),
+   
+  },
+  {
+    path: 'estilos',
+    loadComponent: () => import('./feature/estilos-page/estilos-page').then(m => m.EstilosPage),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'simpsons',
+    loadComponent: () => import('./feature/simpsons-page/simpsons-page').then(m => m.SimpsonsPage),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'simpsons/:id',
+    loadComponent: () => import('./feature/simpson-detail-page/simpson-detail-page').then(m => m.SimpsonDetailPage),
+    canActivate: [authGuard]
+  },
+  {
+  path: 'admin',
+  loadComponent: () => import('./feature/auth/pages/AdminComponetPage/AdminComponetPage').then(m => m.AdminPanelComponent),
+  canActivate: [authGuard, adminGuard] // Ambos guards
+},
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
