@@ -15,6 +15,6 @@ export const publicGuard: CanActivateFn = (route, state) => {
   console.log('❌ publicGuard: Usuario ya autenticado, redirigiendo a home');
   
   // Si ya está autenticado, redirigir a home
-  router.navigate(['/login']);
+  router.navigate(['/home']);
   return false;
 };
