@@ -31,6 +31,17 @@ export class SeoService {
       this.updateMetaTag('name', 'keywords', seoData.keywords);
     }
 
+    // Author y fechas
+    if (seoData.author) {
+      this.updateMetaTag('name', 'author', seoData.author);
+    }
+    if (seoData.publishedDate) {
+      this.updateMetaTag('property', 'article:published_time', seoData.publishedDate);
+    }
+    if (seoData.modifiedDate) {
+      this.updateMetaTag('property', 'article:modified_time', seoData.modifiedDate);
+    }
+
     // Open Graph
     if (seoData.ogTitle) {
       this.updateMetaTag('property', 'og:title', seoData.ogTitle);
@@ -40,6 +51,12 @@ export class SeoService {
     }
     if (seoData.ogImage) {
       this.updateMetaTag('property', 'og:image', seoData.ogImage);
+      // Agregar dimensiones recomendadas de la imagen
+      this.updateMetaTag('property', 'og:image:width', seoData.ogImageWidth || '1200');
+      this.updateMetaTag('property', 'og:image:height', seoData.ogImageHeight || '630');
+      if (seoData.ogImageType) {
+        this.updateMetaTag('property', 'og:image:type', seoData.ogImageType);
+      }
     }
     if (seoData.ogUrl) {
       this.updateMetaTag('property', 'og:url', seoData.ogUrl);
@@ -54,6 +71,9 @@ export class SeoService {
     }
     if (seoData.twitterImage) {
       this.updateMetaTag('name', 'twitter:image', seoData.twitterImage);
+      if (seoData.twitterImageAlt) {
+        this.updateMetaTag('name', 'twitter:image:alt', seoData.twitterImageAlt);
+      }
     }
 
     // Canonical
@@ -109,9 +129,16 @@ export interface SeoData {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageWidth?: string;
+  ogImageHeight?: string;
+  ogImageType?: string;
   ogUrl?: string;
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
+  twitterImageAlt?: string;
   canonical?: string;
+  author?: string;
+  publishedDate?: string;
+  modifiedDate?: string;
 }
