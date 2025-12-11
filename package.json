@@ -1,0 +1,25 @@
+{
+  "name": "03-ui-componentes-estilos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.21.0",
+  "dependencies": {
+    "@angular/animations": "^21.0.3",
+    "@angular/fire": "^20.0.1",
+    "firebase": "^12.6.0",
+    "ngx-toastr": "^19.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "daisyui": "^5.5.8",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  }
+}
