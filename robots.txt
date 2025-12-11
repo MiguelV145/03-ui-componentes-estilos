@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://tudominio.com/sitemap.xml
+
+# Velocidad de rastreo
+Crawl-delay: 1
+Request-rate: 1/1s
+
+# Google específico
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
